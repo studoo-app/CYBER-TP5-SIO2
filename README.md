@@ -18,10 +18,10 @@ afin d'appréhender:
 ## Installation
 
 - `docker-compose up -d`
-- `docker-compose exec app mv .env.example .env`
+- `docker-compose exec app cp .env.example .env`
 - `docker-compose exec app composer install`
 
 ## Accès
 
-- [http://localhost:8001](http://localhost:8001)
-- [http://localhost:8081](http://localhost:8081)
+- [Application](http://localhost:8002)
+- [PhpMyAdmin](http://localhost:8081)

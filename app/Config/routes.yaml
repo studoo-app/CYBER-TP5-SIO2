@@ -1,5 +1,5 @@
 login:
-    uri: /login
+    uri: /
     controller: Controller\LoginController
     httpMethod: [GET,POST]
 logout:

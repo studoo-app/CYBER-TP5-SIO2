@@ -1,17 +1,9 @@
 services:
-  client:
-    container_name: client
+  app:
+    container_name: app
     build:
       context: .
-      dockerfile: ./utils/recipes/Dockerfile_client
-    tty: true
-    volumes:
-      - ./utils/storage/client/Taskfile.yaml:/root/Taskfile.yaml
-  secured-server:
-    container_name: secured-server
-    build:
-      context: .
-      dockerfile: ./utils/recipes/Dockerfile_server
+      dockerfile: ./utils/recipes/Dockerfile_app
     volumes:
       - .:/app
     ports:
@@ -19,11 +11,8 @@ services:
     environment:
       - SERVER_NAME=:80
   database:
-    container_name: edu-web-database
+    container_name: cyber-tp5-database
     image: mariadb:10.5.8
-    #    image: mysql:8.0
-    #    command: mysqld --sql_mode="STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION"
-    #    platform: linux/amd64
     ports:
       - "3306:3306"
     restart: always
@@ -37,7 +26,7 @@ services:
       - ./var/dbdata:/var/lib/mysql
       - ./docs/init.sql:/docker-entrypoint-initdb.d/init.sql
   phpmyadmin:
-    container_name: edu-web-pma
+    container_name: cyber-tp5-pma
     image: phpmyadmin/phpmyadmin:latest
     ports:
       - "8081:80"
@@ -51,9 +40,3 @@ services:
     restart: always
     links:
       - database
-#  mailer:
-#    container_name: edu-web-mailer
-#    image: schickling/mailcatcher
-#    ports: [ "1025:1025", "1080:1080" ]
-volumes:
-  dbdata:
