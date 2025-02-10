@@ -35,11 +35,6 @@ class UserRepository
         var_dump($sql);
         $request = $this->bdd->query($sql);
 
-        //$sql = "SELECT * FROM user WHERE name LIKE :search;";
-        //$request = $this->bdd->prepare($sql);
-        //$request->execute(['search' => "%$search%"]);
-
-
         $users = [];
         foreach ($request->fetchAll() as $value) {
             $user = new User($value["id"], $value["name"], $value["email"], $value["password"]);
